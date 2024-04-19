@@ -1,0 +1,113 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Update User</h5>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <form (ngSubmit)="updateUser()" [formGroup]="updateUserForm">
+      <div class="modal-body">
+        <!-- Form fields for updating a user -->
+        <div class="row mb-4">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="firstName">First Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName" [value]="user?.firstName" required>
+              <div *ngIf="updateUserForm.controls.firstName.touched && updateUserForm.controls.firstName.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.firstName.errors.required">First name is required!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="lastName">Last Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName" [value]="user?.lastName" required>
+              <div *ngIf="updateUserForm.controls.lastName.touched && updateUserForm.controls.lastName.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.lastName.errors.required">Last name is required!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="email">Email <span class="text-danger">*</span></label>
+              <input type="email" class="form-control" id="email" formControlName="email" [value]="user?.email" required>
+              <div *ngIf="updateUserForm.controls.email.touched && updateUserForm.controls.email.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.email.errors.required">Email is required!</span>
+                <span class="text-danger" *ngIf="updateUserForm.controls.email.errors.email">Invalid email!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="dob">Date of Birth <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" id="dob" formControlName="dob" [value]="formatDate(user?.dob)" required>
+              <div *ngIf="updateUserForm.controls.dob.touched && updateUserForm.controls.dob.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.dob.errors.required">Date of birth is required!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="gender">Gender <span class="text-danger">*</span></label>
+              <select class="form-control form-select" id="gender" formControlName="gender" [value]="user?.gender" required>
+                <option value="" disabled>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </select>
+              <div *ngIf="updateUserForm.controls.gender.touched && updateUserForm.controls.gender.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.gender.errors.required">Gender is required!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="nationality">Nationality <span class="text-danger">*</span></label>
+              <select class="form-control form-select" id="nationality" formControlName="nationality" [value]="user?.nationality" required>
+                <option value="" disabled>Select Nationality</option>
+                <option value="German">German</option>
+                <option value="British">British</option>
+                <option value="French">French</option>
+                <option value="Italian">Italian</option>
+                <option value="Spanish">Spanish</option>
+                <option value="Others">Others</option>
+              </select>
+              <div *ngIf="updateUserForm.controls.nationality.touched && updateUserForm.controls.nationality.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.nationality.errors.required">Nationality is required!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-6">
+            <div class="form-group">
+              <label for="phone">Phone <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="phone" formControlName="phone" [value]="user?.phone" required>
+              <div *ngIf="updateUserForm.controls.phone.touched && updateUserForm.controls.phone.invalid">
+                <span class="text-danger" *ngIf="updateUserForm.controls.phone.errors.required">Phone is required!</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <label for="role">Role</label>
+              <select class="form-control form-select" id="role" formControlName="role" [value]="user?.role">
+                <option value="" disabled>Select Role</option>
+                <option value="admin">Admin</option>
+                <option value="subscriber">Subscriber</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="updateUserForm.invalid || isSaving">Save</button>
+      </div>
+    </form>
+  </div>
+  

@@ -1,0 +1,124 @@
+<!-- // fields
+// firstName: string
+// lastName: string
+// email: string
+// dob: date
+// gender: string
+// nationality: string
+// phone: string
+// role: string -->
+
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Create New User</h5>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <form (ngSubmit)="createUser()" [formGroup]="createUserForm">
+    <div class="modal-body">
+      <!-- Form fields for creating a user -->
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="firstName">First Name <span class="text-danger">*</span></label> <!-- required field -->
+                  <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
+                    <div *ngIf="createUserForm.controls.firstName.touched && createUserForm.controls.firstName.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.firstName.errors.required">First name is required!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="lastName">Last Name <span class="text-danger">*</span></label> <!-- required field -->
+                  <input type="text" class="form-control" id="lastName" formControlName="lastName" required>
+                    <div *ngIf="createUserForm.controls.lastName.touched && createUserForm.controls.lastName.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.lastName.errors.required">Last name is required!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="email">Email <span class="text-danger">*</span></label> <!-- required field -->
+                  <input type="email" class="form-control" id="email" formControlName="email" required>
+                    <div *ngIf="createUserForm.controls.email.touched && createUserForm.controls.email.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.email.errors.required">Email is required!</span>
+                        <span class="text-danger" *ngIf="createUserForm.controls.email.errors.email">Invalid email!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="dob">Date of Birth <span class="text-danger">*</span></label> <!-- required field -->
+                  <input type="date" class="form-control" id="dob" formControlName="dob" required>
+                    <div *ngIf="createUserForm.controls.dob.touched && createUserForm.controls.dob.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.dob.errors.required">Date of birth is required!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="gender">Gender <span class="text-danger">*</span></label> <!-- required field -->
+                    <select class="form-control form-select" id="gender" formControlName="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <div *ngIf="createUserForm.controls.gender.touched && createUserForm.controls.gender.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.gender.errors.required">Gender is required!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="nationality">Nationality <span class="text-danger">*</span></label> <!-- required field -->
+                    <select class="form-control form-select" id="nationality" formControlName="nationality" required>
+                        <option value="" disabled selected>Select Nationality</option>
+                        <option value="german">German</option>
+                        <option value="british">British</option>
+                        <option value="french">French</option>
+                        <option value="italian">Italian</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <div *ngIf="createUserForm.controls.nationality.touched && createUserForm.controls.nationality.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.nationality.errors.required"> Nationality is required!</span>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-6">
+                <div class="form-group">
+                  <label for="phone">Phone <span class="text-danger">*</span></label> <!-- required field -->
+                  <input type="text" class="form-control" id="phone" formControlName="phone" required>
+                    <div *ngIf="createUserForm.controls.phone.touched && createUserForm.controls.phone.invalid">
+                        <span class="text-danger" *ngIf="createUserForm.controls.phone.errors.required">Phone is required!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="role">Role <span class="text-muted">(optional)</span></label> <!-- optional field --> <!-- default value: subscriber -->
+                    <select class="form-control form-select" id="role" formControlName="role" required>
+                        <option value="" disabled selected>Select Role</option>
+                        <option value="admin">Admin</option>
+                        <option value="subscriber">Subscriber</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="createUserForm.invalid || isSaving">Save</button>
+    </div>
+</form>
+  </div>
+  

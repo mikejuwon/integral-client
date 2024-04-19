@@ -1,0 +1,42 @@
+<div class="auth option2">
+    <div class="auth_left">
+        <div class="card">
+            <div class="card-body">
+                <!-- Form to sign in the admin -->
+                
+                    <div class="text-center">
+                        <div class="card-title mt-3 mb-5">Intergral Login</div>
+                    </div>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+
+                        <div>
+                            <input id="username" type="text" formControlName="username" placeholder="Username">
+                            <div *ngIf="loginForm.controls.username.touched && loginForm.controls.username.invalid">
+                                <span class="text-danger" *ngIf="loginForm.controls.username.errors.required">Username is required!</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input id="password" type="password" formControlName="password" placeholder="Password">
+                            <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                                <span class="text-danger" *ngIf="loginForm.controls.password.errors.required">Password is required!</span>
+                                <span class="text-danger" *ngIf="loginForm.controls.password.errors.minlength">Password must be at least 6 characters!</span>
+                                <span class="text-danger" *ngIf="loginForm.controls.password.errors.maxlength">Password must be at most 20 characters!</span>
+                            </div>
+                        </div>                    
+                            
+                        <button type="submit" class="btn btn-primary btn-block" [disabled]="!loginForm.valid">Login</button>                        
+                      
+                    </form>  
+                    
+                    <!-- designed by Michael Stephen -->
+                    <div class="text-center mt-3">
+                        <div class="designed-by mt-3 mb-5"> ❤️ Designed by Michael Stephen </div>
+                    </div>
+
+                    
+            </div>
+        </div>        
+    </div>
+</div>
